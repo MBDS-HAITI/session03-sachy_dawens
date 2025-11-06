@@ -1,46 +1,47 @@
 package org.example;
 
 public abstract class Character {
-    private String name;
-    private int health;
-    private int weaponPower;
+    private final String name;
+    private final Player owner;
+    private final Weapon weapon;
 
-    // -- Constructeur des objets
-    public Character(String name, int health, int weaponPower) {
+    private final int maxHp;
+    private int hp;
+
+    protected Character(String name, Player owner, int maxHp, Weapon weapon) {
         this.name = name;
-        this.health = health;
-        this.weaponPower = weaponPower;
+        this.owner = owner;
+        this.maxHp = maxHp;
+        this.hp = maxHp;
+        this.weapon = weapon;
     }
 
-    // -- Getters et setters pour tous les attributs
-    public String getName() {
-        return name;
+    public String getName()  { return name; }
+    public Player getOwner() { return owner; }
+    public int getHp()       { return hp; }
+    public int getMaxHp()    { return maxHp; }
+    public Weapon getWeapon(){ return weapon; }
+
+    public boolean isAlive() { return hp > 0; }
+
+    public void takeDamage(int dmg) {
+        if (dmg < 0) dmg = 0;
+        hp = Math.max(0, hp - dmg);
     }
 
-    public int getHealth() {
-        return health;
+    public void receiveHeal(int amount) {
+        if (amount < 0) amount = 0;
+        hp = Math.min(maxHp, hp + amount);
     }
 
-    public int getWeaponPower() {
-        return weaponPower;
+    public abstract String getType();
+
+    public boolean canAttack() { return this instanceof Attacker; }
+    public boolean canHeal()   { return this instanceof Healer; }
+
+    @Override
+    public String toString() {
+        return String.format("%s %s [HP %d/%d, %s]",
+                getType(), name, hp, maxHp, weapon);
     }
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    // -- Methodes cummunes
-    public void attack(Character target) {
-        System.out.println(name + " attaque " + target.getName() + " avec " + weaponPower + " points de dégâts ! ");
-        target.setHealth(target.getHealth() - weaponPower);
-    }
-
-    public boolean isAlive() {
-        return health > 0;
-    }
-
-    // -- Methodes abstraites
-    public abstract void actionParticuliere();
-
 }
-

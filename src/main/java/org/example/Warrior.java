@@ -1,10 +1,9 @@
 package org.example;
 
-public class Warrior extends Character {
-    public Warrior(String name) {
-        super(name,100,30 );
+public class Warrior extends Character implements Attacker {
+    public Warrior(String name, Player owner) {
+        super(name, owner, 120, new Weapon("Steel Sword", 25));
     }
-    public void actionParticuliere() {
-        System.out.println(getName() + " se bat avec courage !");
-    }
+    @Override public String getType() { return "Warrior"; }
+    @Override public int attackDamage() { return getWeapon().getPower(); }
 }
