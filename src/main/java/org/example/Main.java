@@ -49,7 +49,7 @@ public class Main {
                 case 2 -> perso = new Magus(nomPerso);
                 case 3 -> perso = new Dwarf(nomPerso);
                 case 4 -> perso = new Colossus(nomPerso);
-                default -> throw new IllegalArgumentException("Choix invalide");
+                default -> throw new IllegalArgumentException(" Ce Choix invalide");
             }
 
             joueur.ajouterPersonnage(perso);

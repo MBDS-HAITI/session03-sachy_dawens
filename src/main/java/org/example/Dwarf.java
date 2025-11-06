@@ -12,7 +12,7 @@ public class Dwarf extends Character {
             return;
         }
         int dmg = getWeapon().getPower();
-        System.out.println(getName() + " frappe " + target.getName() + " avec sa hache !");
+        System.out.println(getName() + " frappe " + target.getName() + " avec sa hâche !");
         target.takeDamage(dmg);
     }
 }
