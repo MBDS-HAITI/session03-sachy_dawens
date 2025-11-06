@@ -1,47 +1,50 @@
 package org.example;
 
 public abstract class Character {
-    private final String name;
-    private final Player owner;
-    private final Weapon weapon;
+        private String name;
+        private int health;
+        private Weapon weapon;
 
-    private final int maxHp;
-    private int hp;
 
-    protected Character(String name, Player owner, int maxHp, Weapon weapon) {
-        this.name = name;
-        this.owner = owner;
-        this.maxHp = maxHp;
-        this.hp = maxHp;
+    public Character(String nameCharacter, Weapon weapon, int health) {
+        this.name = nameCharacter;
         this.weapon = weapon;
+        this.health = health;
     }
 
-    public String getName()  { return name; }
-    public Player getOwner() { return owner; }
-    public int getHp()       { return hp; }
-    public int getMaxHp()    { return maxHp; }
-    public Weapon getWeapon(){ return weapon; }
-
-    public boolean isAlive() { return hp > 0; }
-
-    public void takeDamage(int dmg) {
-        if (dmg < 0) dmg = 0;
-        hp = Math.max(0, hp - dmg);
+    public String getName() {
+        return name;
     }
 
-    public void receiveHeal(int amount) {
-        if (amount < 0) amount = 0;
-        hp = Math.min(maxHp, hp + amount);
+    public int getHealth() {
+        return health;
     }
 
-    public abstract String getType();
+    public Weapon getWeapon() {
+        return weapon;
+    }
 
-    public boolean canAttack() { return this instanceof Attacker; }
-    public boolean canHeal()   { return this instanceof Healer; }
+    public void setHealth(int health) {
+        this.health = health;
+    }
+    public void takeDamage(int damage) {
+        health = Math.max(0, health - damage);
+        System.out.println(name + " prend " + damage + " dégâts. HP restants: " + health);
+    }
 
+    public void heal(int amount) {
+        health += amount;
+        System.out.println(name + " est soigné de " + amount + " HP. HP actuels: " + health);
+    }
+
+    public boolean isAlive() {
+        return health > 0;
+    }
     @Override
     public String toString() {
-        return String.format("%s %s [HP %d/%d, %s]",
-                getType(), name, hp, maxHp, weapon);
+        return name + " [" + getClass().getSimpleName() + "] - HP: " + health + " - " + weapon;
     }
+
+    public abstract void action(Character target);
 }
+

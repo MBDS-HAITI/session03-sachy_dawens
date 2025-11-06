@@ -1,9 +1,19 @@
 package org.example;
 
-public class Warrior extends Character implements Attacker {
-    public Warrior(String name, Player owner) {
-        super(name, owner, 120, new Weapon("Steel Sword", 25));
+public class Warrior extends Character {
+
+    public Warrior(String name) {
+        super(name, new Weapon("Épée d’acier", 25), 120);
     }
-    @Override public String getType() { return "Warrior"; }
-    @Override public int attackDamage() { return getWeapon().getPower(); }
+
+    @Override
+    public void action(Character target) {
+        if (target == null) {
+            System.out.println(getName() + " n'a aucune cible à attaquer.");
+            return;
+        }
+        int degats = getWeapon().getPower();
+        System.out.println(getName() + " attaque " + target.getName() + " avec son épée !");
+        target.takeDamage(degats);
+    }
 }

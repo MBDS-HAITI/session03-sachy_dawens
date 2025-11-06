@@ -1,10 +1,19 @@
 package org.example;
 
-public class Magus extends Character implements Attacker, Healer {
-    public Magus(String name, Player owner) {
-        super(name, owner, 80, new Weapon("Oak Staff", 12));
+public class Magus extends Character {
+    private final int healPower = 30;
+
+    public Magus(String name) {
+        super(name, new Weapon("Bâton de chêne", 12), 80);
     }
-    @Override public String getType() { return "Mage"; }
-    @Override public int attackDamage() { return getWeapon().getPower(); }
-    @Override public int healPoints() { return 30; }
+
+    @Override
+    public void action(Character target) {
+        if (target == null) {
+            System.out.println(getName() + " n'a aucune cible à soigner.");
+            return;
+        }
+        System.out.println(getName() + " lance un soin sur " + target.getName() + ".");
+        target.heal(healPower);
+    }
 }

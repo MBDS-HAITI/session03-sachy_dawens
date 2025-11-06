@@ -1,9 +1,18 @@
 package org.example;
 
-public class Colossus extends Character implements Attacker {
-    public Colossus(String name, Player owner) {
-        super(name, owner, 180, new Weapon("Stone Hammer", 22));
+public class Colossus extends Character {
+    public Colossus(String name) {
+        super(name, new Weapon("Marteau de pierre", 22), 180); // très résistant, dégâts moyens
     }
-    @Override public String getType() { return "Colossus"; }
-    @Override public int attackDamage() { return getWeapon().getPower(); }
+
+    @Override
+    public void action(Character target) {
+        if (target == null) {
+            System.out.println(getName() + " n'a aucune cible à attaquer.");
+            return;
+        }
+        int dmg = getWeapon().getPower();
+        System.out.println(getName() + " écrase " + target.getName() + " avec son marteau !");
+        target.takeDamage(dmg);
+    }
 }
