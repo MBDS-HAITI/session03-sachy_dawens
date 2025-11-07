@@ -1,9 +1,9 @@
 package org.example;
 
 public abstract class Character {
-        private String name;
-        private int health;
-        private Weapon weapon;
+    private String name;
+    private int health;
+    private Weapon weapon;
 
 
     public Character(String nameCharacter, Weapon weapon, int health) {
