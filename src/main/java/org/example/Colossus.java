@@ -1,8 +1,8 @@
 package org.example;
 
-public class Dwarf extends Character {
-    public Dwarf(String name) {
-        super(name, new Weapon("Hache runique", 34), 70);
+public class Colossus extends Character {
+    public Colossus(String name) {
+        super(name, new Weapon("Marteau de pierre", 22), 180); // très résistant, dégâts moyens
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Dwarf extends Character {
             return;
         }
         int dmg = getWeapon().getPower();
-        System.out.println(getName() + " frappe " + target.getName() + " avec sa hâche !");
+        System.out.println(getName() + " écrase " + target.getName() + " avec son marteau !");
         target.takeDamage(dmg);
     }
 }

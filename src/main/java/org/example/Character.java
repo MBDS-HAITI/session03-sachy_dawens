@@ -1,19 +1,17 @@
 package org.example;
 
 public abstract class Character {
-        private String name;
-        private int health;
-        private Weapon weapon;
+    private String name;
+    private int health;
+    private Weapon weapon;
 
 
-    // -- Constructeur des objets
     public Character(String nameCharacter, Weapon weapon, int health) {
         this.name = nameCharacter;
         this.weapon = weapon;
         this.health = health;
     }
 
-    // -- Getters pour tous les attributs
     public String getName() {
         return name;
     }
@@ -29,7 +27,6 @@ public abstract class Character {
     public void setHealth(int health) {
         this.health = health;
     }
-    // -- Methodes communes
     public void takeDamage(int damage) {
         health = Math.max(0, health - damage);
         System.out.println(name + " prend " + damage + " dégâts. HP restants: " + health);
@@ -48,5 +45,6 @@ public abstract class Character {
         return name + " [" + getClass().getSimpleName() + "] - HP: " + health + " - " + weapon;
     }
 
+    public abstract void action(Character target);
 }
 

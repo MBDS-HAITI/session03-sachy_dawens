@@ -2,5 +2,6 @@
 package org.example;
 
 public interface Action {
-    void actionParticuliere(Character target);
+    void attack(Character target);
+    void actionParticuliere();
 }
