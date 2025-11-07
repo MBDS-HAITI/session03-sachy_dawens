@@ -14,7 +14,7 @@ public class Main {
     }
 
     public void demarrer() {
-        System.out.println(" Battle Arena Version Console ");
+        System.out.println(" Bienvenue a notre jeu Battle Arena  ");
         System.out.print("Nom du Joueur 1 : ");
         joueur1 = new Player(scanner.nextLine().trim());
         System.out.print("Nom du Joueur 2 : ");
