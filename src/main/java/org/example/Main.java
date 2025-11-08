@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Game jeu = new Game();
-        jeu.demarrer();
+        jeu.startGame();
     }
 
 
