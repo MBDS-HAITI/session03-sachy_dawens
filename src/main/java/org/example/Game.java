@@ -18,9 +18,9 @@ public class Game {
             name1 = scanner.nextLine().trim();
 
             if (name1.isEmpty()) {
-                System.out.println("⚠️ Name cannot be empty. Try again!");
+                System.out.println(" Name cannot be empty. Try again!");
             } else if (name1.contains(" ")) {
-                System.out.println("⚠️ Name cannot contain spaces. Try again!");
+                System.out.println(" Name cannot contain spaces. Try again!");
                 name1 = "";
             }
         } while (name1.isEmpty());
@@ -32,12 +32,12 @@ public class Game {
             name2 = scanner.nextLine().trim();
 
             if (name2.isEmpty()) {
-                System.out.println("⚠️ Name cannot be empty. Try again!");
+                System.out.println(" Name cannot be empty. Try again!");
             } else if (name2.equalsIgnoreCase(name1)) {
-                System.out.println("⚠️ Players must have different names. Try again!");
+                System.out.println(" Players must have different names. Try again!");
                 name2 = "";
             } else if (name2.contains(" ")) {
-                System.out.println("⚠️ Name cannot contain spaces. Try again!");
+                System.out.println(" Name cannot contain spaces. Try again!");
                 name2 = "";
             }
 
@@ -78,12 +78,12 @@ public class Game {
                 characterName = scanner.nextLine().trim();
 
                 if (characterName.isEmpty()) {
-                    System.out.println("⚠️ Character name cannot be empty!");
+                    System.out.println(" Character name cannot be empty!");
                 } else if (characterName.contains(" ")) {
-                    System.out.println("⚠️ Character name cannot contain spaces!");
+                    System.out.println(" Character name cannot contain spaces!");
                     characterName = "";
                 } else if (player.hasCharacter(characterName)) {
-                    System.out.println("⚠️ You already have a character with this name!");
+                    System.out.println(" You already have a character with this name!");
                     characterName = "";
                 }
 
@@ -145,9 +145,9 @@ public class Game {
 
         System.out.println("\n=== End of the battle ===");
         if (player1.isDefeated()) {
-            System.out.println("🏆 Victory for " + player2.getName() + "!");
+            System.out.println(" Victory for " + player2.getName() + "!");
         } else {
-            System.out.println("🏆 Victory for " + player1.getName() + "!");
+            System.out.println(" Victory for " + player1.getName() + "!");
         }
     }
 
