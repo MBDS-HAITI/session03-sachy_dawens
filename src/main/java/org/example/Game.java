@@ -57,19 +57,21 @@ public class Game {
     }
 
     /**
-     * Allows a player to create a team of 3 characters.
+     * Allows a player to create a team of 3 characters (each type only once).
      */
     private void createTeam(Player player) {
         System.out.println("\n" + player.getName() + ", choose your 3 characters.");
-        List<String> classes = List.of("Warrior", "Magus", "Dwarf", "Colossus");
+        List<String> allClasses = List.of("Warrior", "Magus", "Dwarf", "Colossus");
+        List<String> available = new java.util.ArrayList<>(allClasses);
 
         for (int i = 1; i <= 3; i++) {
-            System.out.println("\nChoose the character type " + i + ":");
-            for (int j = 0; j < classes.size(); j++) {
-                System.out.println((j + 1) + ") " + classes.get(j));
+            System.out.println("\nChoose character type " + i + " (each type only once):");
+            for (int j = 0; j < available.size(); j++) {
+                System.out.println((j + 1) + ") " + available.get(j));
             }
             System.out.print("> ");
-            int choice = readIntBetween(1, 4);
+            int choice = readIntBetween(1, available.size());
+            String chosenType = available.get(choice - 1);
 
             // Ask for a unique and valid character name
             String characterName;
@@ -86,21 +88,22 @@ public class Game {
                     System.out.println(" You already have a character with this name!");
                     characterName = "";
                 }
-
             } while (characterName.isEmpty() || player.hasCharacter(characterName));
 
             // Create the character based on the chosen type
             Character character;
-            switch (choice) {
-                case 1 -> character = new Warrior(characterName);
-                case 2 -> character = new Magus(characterName);
-                case 3 -> character = new Dwarf(characterName);
-                case 4 -> character = new Colossus(characterName);
-                default -> throw new IllegalArgumentException("Invalid choice");
+            switch (chosenType) {
+                case "Warrior" -> character = new Warrior(characterName);
+                case "Magus" -> character = new Magus(characterName);
+                case "Dwarf" -> character = new Dwarf(characterName);
+                case "Colossus" -> character = new Colossus(characterName);
+                default -> throw new IllegalArgumentException("Invalid type: " + chosenType);
             }
 
             player.addCharacter(character);
-            System.out.println(characterName + " has been added to your team!");
+            System.out.println(characterName + " (" + chosenType + ") has been added to your team!");
+            // Remove this type so it cannot be chosen again
+            available.remove(chosenType);
         }
     }
 
